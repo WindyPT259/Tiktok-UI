@@ -50,7 +50,7 @@
         color: rgba(22, 24, 35, 0.75);
     }
     &::after {
-        content: "";
+        content: '';
         position: absolute;
         top: var(--search-top-spacer);
         right: var(--search-btn-width);
@@ -86,10 +86,31 @@
         background-color: rgba(22, 24, 35, 0.06);
     }
 }
+//Action
+.actions {
+    display: flex;
+    align-items: center;
+}
+
 .more-btn {
     font-size: 2rem;
     margin-left: 28px;
     background-color: transparent;
     padding: 4px 8px;
+    cursor: pointer;
+}
+.action-btn {
+    color: #161823;
+    font-size: 2.2rem;
+    background-color: transparent;
+    padding: 4px 12px;
+    cursor: pointer;
+}
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-left: 12px;
     cursor: pointer;
 }
