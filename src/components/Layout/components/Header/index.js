@@ -10,6 +10,7 @@ import {
     faGear,
     faSignOut,
 } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
@@ -20,6 +21,7 @@ import Menu from '~/components/Popper/Menu';
 import { InboxIcon, MessageIcon, UploadIcon } from '~/components/Icons';
 import Image from '~/components/Image';
 import Search from '../Search';
+import routesConfig from '~/config/routes';
 
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
@@ -29,8 +31,8 @@ const MENU_ITEMS = [
         children: {
             title: 'Language',
             data: [
-                { code: 'en', title: 'English' },
-                { code: 'vi', title: 'Tiếng Việt' },
+                { type: 'language', code: 'en', title: 'English' },
+                { type: 'language', code: 'vi', title: 'Tiếng Việt' },
             ],
         },
     },
@@ -80,7 +82,9 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <img src={image.logo} alt="logo" />
+                <Link to={routesConfig.home} className={cx('logo-link')}>
+                    <img src={image.logo} alt="TikTok" />
+                </Link>
 
                 {/* Search */}
                 <Search />
