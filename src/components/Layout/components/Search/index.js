@@ -1,13 +1,15 @@
 import { useEffect, useState, useRef } from 'react';
-import HeadlessTippy from '@tippyjs/react/headless';
-import { Wrapper as PopperWrapper } from '~/components/Popper';
-import classNames from 'classnames/bind';
-import AccountItem from '~/components/AccountItem';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import HeadlessTippy from '@tippyjs/react/headless';
+import classNames from 'classnames/bind';
+
+import * as searchServices from '~/apiServices/searchServices';
+import AccountItem from '~/components/AccountItem';
+import { Wrapper as PopperWrapper } from '~/components/Popper';
 import { SearchIcon } from '~/components/Icons';
-import styles from './Search.module.scss';
 import { useDebounce } from '~/hooks';
+import styles from './Search.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -34,16 +36,30 @@ function Search() {
             setSearchResult([]);
             return;
         }
-        setLoading(true);
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
-            .then((res) => res.json())
-            .then((res) => {
-                setSearchResult(res.data);
-                setLoading(false);
-            })
-            .catch(() => {
-                setLoading(false);
-            });
+
+        const fetchAPI = async () => {
+            setLoading(true);
+            const result = await searchServices.search(debounced);
+            setSearchResult(result);
+
+            setLoading(false);
+        };
+
+        fetchAPI();
+        // request
+        //     .get('users/search', {
+        //         params: {
+        //             q: debounced,
+        //             type: 'less',
+        //         },
+        //     })
+        //     .then((res) => {
+        //         setSearchResult(res.data);
+        //         setLoading(false);
+        //     })
+        //     .catch(() => {
+        //         setLoading(false);
+        //     });
     }, [debounced]);
 
     return (
