@@ -14,9 +14,9 @@ function MenuItem({ title, to, icon, activeIcon }) {
     );
 }
 MenuItem.propTypes = {
-    title: PropTypes.string,
-    to: PropTypes.string,
-    icon: PropTypes.string,
-    activeIcon: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    to: PropTypes.string.isRequired,
+    icon: PropTypes.node.isRequired,
+    activeIcon: PropTypes.node.isRequired,
 };
 export default MenuItem;
