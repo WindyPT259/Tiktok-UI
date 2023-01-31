@@ -19,8 +19,10 @@
     border: 1.5px solid transparent;
     input {
         font-family: var(--font-family);
-        flex: 1;
         height: 100%;
+        padding-right: 40px;
+
+        flex: 1;
         color: var(--black);
         font-size: 1.6rem;
         background-color: transparent;
